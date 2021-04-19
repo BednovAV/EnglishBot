@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using TranslatorLibrary;
 
 namespace EnglishBot.Models
 {
@@ -37,15 +38,6 @@ namespace EnglishBot.Models
                     Bot.Commands
                         .FirstOrDefault(command => command.Contains(message.Text))
                         ?.Execute(user);
-
-                    //foreach (var command in Bot.Commands)
-                    //{
-                    //    if (command.Contains(message.Text))
-                    //    {
-                    //        command.Execute(user);
-                    //        break;
-                    //    }
-                    //}
                 }
 
                 switch (user.DialogStatus)
@@ -54,6 +46,14 @@ namespace EnglishBot.Models
                     case Status.WaitingNewUser:
                         await NewUserAsync(message, client, user);
                         break;
+
+                    case Status.TranslateEnToRu:
+                    case Status.WaitingTranslteEnToRu:
+                    case Status.TranslateRuToEn:
+                    case Status.WaitingTranslteRuToEn:
+                        await TranslateAsync(message, client, user);
+                        break;
+
                     case Status.other:
                         await OtherAsync(message, client, user);
                         break;
@@ -64,13 +64,52 @@ namespace EnglishBot.Models
 
         }
 
+        private async Task TranslateAsync(Message message, TelegramBotClient client, BotUser user)
+        {
+            if (user.DialogStatus == Status.TranslateEnToRu || 
+                user.DialogStatus == Status.TranslateRuToEn)
+            {
+                await client.SendTextMessageAsync(
+                                chatId: user.Chat,
+                                text: "Введите слово или предложение");
+
+                user.DialogStatus = user.DialogStatus == Status.TranslateEnToRu ?
+                                    Status.WaitingTranslteEnToRu:
+                                    Status.WaitingTranslteRuToEn;
+            }
+            else
+            {
+                Language from;
+                Language to;
+
+                if (user.DialogStatus == Status.WaitingTranslteEnToRu)
+                {
+                    from = Language.en;
+                    to = Language.ru;
+                }
+                else
+                {
+                    from = Language.ru;
+                    to = Language.en;
+                }
+
+                var translatedText = GoogleTranslator.Translate(message.Text, from, to);
+
+                await client.SendTextMessageAsync(
+                                chatId: user.Chat,
+                                text: translatedText,
+                                replyToMessageId: message.MessageId);
+
+                user.DialogStatus = Status.other;
+            }
+        }
+
         private async Task OtherAsync(Message message, TelegramBotClient client, BotUser user)
         {
             await client.SendTextMessageAsync(
-                chatId : user.Chat,
-                text : $"Привет, {user.Name}",
-                replyToMessageId : message.MessageId
-                );
+                            chatId : user.Chat,
+                            text : $"Привет, {user.Name}",
+                            replyToMessageId : message.MessageId);
         }
 
         private async Task NewUserAsync(Message message, TelegramBotClient client, BotUser user)
@@ -78,8 +117,8 @@ namespace EnglishBot.Models
             if (user.DialogStatus == Status.NewUser)
             {
                 await client.SendTextMessageAsync(
-                    chatId : user.Chat,
-                    text : "Как я могу к вам обращаться?");
+                                chatId : user.Chat,
+                                text : "Как я могу к вам обращаться?");
 
                 user.DialogStatus = Status.WaitingNewUser;
             }
@@ -87,11 +126,13 @@ namespace EnglishBot.Models
             {
                 user.Name = message.Text;
                 await client.SendTextMessageAsync(
-                    chatId : user.Chat,
-                    text : "Хорошо, запомнил.");
+                                chatId : user.Chat,
+                                text : "Хорошо, запомнил.");
 
                 user.DialogStatus = Status.other;
             }
         }
+
+        
     }
 }

@@ -7,8 +7,12 @@ namespace EnglishBot.Models.DbModels
 {
     public enum Status
     {
-        NewUser,
+        NewUser = 0,
         WaitingNewUser,
+        TranslateRuToEn,
+        WaitingTranslteRuToEn,
+        TranslateEnToRu,
+        WaitingTranslteEnToRu,
         other
     }
 }

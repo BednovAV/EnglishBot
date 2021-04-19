@@ -261,6 +261,8 @@
     <Compile Include="Models\Bot.cs" />
     <Compile Include="Models\Commands\Command.cs" />
     <Compile Include="Models\Commands\RenameCommand.cs" />
+    <Compile Include="Models\Commands\TranslateEnToRuCommand.cs" />
+    <Compile Include="Models\Commands\TranslateRuToEnCommand.cs" />
     <Compile Include="Models\DbModels\BotDbContext.cs" />
     <Compile Include="Models\DbModels\StatusEnum.cs" />
     <Compile Include="Models\DbModels\BotUser.cs" />
@@ -284,6 +286,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TranslatorLibrary\TranslatorLibrary.csproj">
+      <Project>{2ACC09D3-86BF-43AE-BC6B-0385B464C8F9}</Project>
+      <Name>TranslatorLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
