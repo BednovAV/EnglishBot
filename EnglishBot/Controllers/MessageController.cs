@@ -17,15 +17,9 @@ namespace EnglishBot.Controllers
 
             var message = update.Message;
 
-            var users = Bot.Users;
+            var userLogic = Bot.UserLogic;
 
-
-            if (!users.ContainsKey(message.Chat.Id))
-            {
-                users.Add(message.Chat.Id, new Models.User("", message.Chat.Id));
-            }
-
-            await users[message.Chat.Id].ReceiveMessageAsync(message, client);
+            await userLogic.ReceiveMessageAsync(message, client);
 
             return Ok();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnglishBot.Models.DbModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,17 @@ namespace EnglishBot.Controllers
     {
         public string Index()
         {
-            return "Hello";
+            string result = string.Empty;
+            using (BotDbContext db = new BotDbContext())
+            {
+                var users = db.Users;
+
+                foreach (var item in users)
+                {
+                    result += $"{item.Id} {item.Chat} {item.Name} {item.DialogStatus} <br>";
+                }
+            }
+            return result;
         }
 
         

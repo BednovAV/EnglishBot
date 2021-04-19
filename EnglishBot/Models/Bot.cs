@@ -11,7 +11,8 @@ namespace EnglishBot.Models
     public class Bot
     {
         private static TelegramBotClient _client;
-        public static Dictionary<long, User> Users;
+
+        public static IUserLogic UserLogic;
 
         private static List<Command> commandsList;
         public static IReadOnlyList<Command> Commands { get => commandsList.AsReadOnly(); }
@@ -23,10 +24,10 @@ namespace EnglishBot.Models
                 return _client;
             }
 
+            UserLogic = new UserLogic();
+
             commandsList = new List<Command>();
             commandsList.Add(new RenameCommand());
-
-            Users = new Dictionary<long, User>();
 
             _client = new TelegramBotClient(AppSettings.Key);
 
