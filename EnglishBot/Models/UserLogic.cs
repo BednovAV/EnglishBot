@@ -17,11 +17,12 @@ namespace EnglishBot.Models
             
             using(BotDbContext db = new BotDbContext())
             {
-                BotUser user = db.Users.FirstOrDefault(u => u.Chat == message.Chat.Id);
+                BotUser user = db.Users
+                    .FirstOrDefault(u => u.Chat == message.Chat.Id);
 
                 if (user is null)
                 {
-                    user = new BotUser()
+                    user = new BotUser
                     {
                         Chat = message.Chat.Id,
                         Name = message.From.FirstName,
@@ -33,14 +34,18 @@ namespace EnglishBot.Models
 
                 if (message.Text.First() == '/')
                 {
-                    foreach (var command in Bot.Commands)
-                    {
-                        if (command.Contains(message.Text))
-                        {
-                            command.Execute(user);
-                            break;
-                        }
-                    }
+                    Bot.Commands
+                        .FirstOrDefault(command => command.Contains(message.Text))
+                        ?.Execute(user);
+
+                    //foreach (var command in Bot.Commands)
+                    //{
+                    //    if (command.Contains(message.Text))
+                    //    {
+                    //        command.Execute(user);
+                    //        break;
+                    //    }
+                    //}
                 }
 
                 switch (user.DialogStatus)

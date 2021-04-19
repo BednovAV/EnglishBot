@@ -12,9 +12,7 @@ namespace EnglishBot.Models.Commands
 
         public abstract void Execute(BotUser user);
 
-        public virtual bool Contains(string command)
-        {
-            return Name == command;
-        }
+        public virtual bool Contains(string command) 
+            => Name == command;
     }
 }
