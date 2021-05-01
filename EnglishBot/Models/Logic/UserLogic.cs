@@ -8,12 +8,12 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using TranslatorLibrary;
 
-namespace EnglishBot.Models
+namespace EnglishBot.Models.Logic
 {
     public class UserLogic : IUserLogic
     {
 
-        public async Task ReceiveMessageAsync(Message message, TelegramBotClient client)
+        public async Task ReceiveTextMessageAsync(Message message, TelegramBotClient client)
         {
             
             using(BotDbContext db = new BotDbContext())
@@ -61,7 +61,11 @@ namespace EnglishBot.Models
 
                 await db.SaveChangesAsync();
             }
+        }
 
+        public Task ReceiveVoiceMessageAsync(Message message, TelegramBotClient client)
+        {
+            return Task.CompletedTask;
         }
 
         private async Task TranslateAsync(Message message, TelegramBotClient client, BotUser user)
@@ -132,7 +136,5 @@ namespace EnglishBot.Models
                 user.DialogStatus = Status.other;
             }
         }
-
-        
     }
 }

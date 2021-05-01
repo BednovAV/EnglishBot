@@ -266,8 +266,8 @@
     <Compile Include="Models\DbModels\BotDbContext.cs" />
     <Compile Include="Models\DbModels\StatusEnum.cs" />
     <Compile Include="Models\DbModels\BotUser.cs" />
-    <Compile Include="Models\IUserLogic.cs" />
-    <Compile Include="Models\UserLogic.cs" />
+    <Compile Include="Models\Logic\IUserLogic.cs" />
+    <Compile Include="Models\Logic\UserLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

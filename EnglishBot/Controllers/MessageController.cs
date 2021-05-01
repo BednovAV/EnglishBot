@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 
 namespace EnglishBot.Controllers
@@ -19,7 +20,17 @@ namespace EnglishBot.Controllers
 
             var userLogic = Bot.UserLogic;
 
-            await userLogic.ReceiveMessageAsync(message, client);
+            switch (message.Type)
+            {
+                case MessageType.Text:
+                    await userLogic.ReceiveTextMessageAsync(message, client);
+                    break;
+                case MessageType.Audio:
+                    await userLogic.ReceiveVoiceMessageAsync(message, client);
+                    break;
+                default:
+                    break;
+            }
 
             return Ok();
         }
