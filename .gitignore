@@ -3,7 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-Conections.congig
+connectionStrings.config
 AppSettings.cs
 
 # User-specific files

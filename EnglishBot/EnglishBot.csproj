@@ -286,6 +286,7 @@
     <Folder Include="Models\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="connectionStrings.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
