@@ -1,4 +1,5 @@
-﻿using EnglishBot.Models.DbModels;
+﻿using EnglishBot.Models;
+using EnglishBot.Models.DbModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace EnglishBot.Controllers
                     result += $"{item.Id} {item.Chat} {item.Name} {item.DialogStatus} <br>";
                 }
             }
+
+            result += VoiceTest.LastVoiceMessage;
             return result;
         }
 

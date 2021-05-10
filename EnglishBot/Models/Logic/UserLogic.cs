@@ -65,6 +65,11 @@ namespace EnglishBot.Models.Logic
 
         public Task ReceiveVoiceMessageAsync(Message message, TelegramBotClient client)
         {
+            VoiceTest.LastVoiceMessage = message.Voice.FileId + Environment.NewLine
+                                            + message.Voice.Duration + Environment.NewLine
+                                            + message.Voice.FileSize + Environment.NewLine
+                                            + message.Voice.FileUniqueId + Environment.NewLine;
+
             return Task.CompletedTask;
         }
 

@@ -25,7 +25,7 @@ namespace EnglishBot.Controllers
                 case MessageType.Text:
                     await userLogic.ReceiveTextMessageAsync(message, client);
                     break;
-                case MessageType.Audio:
+                case MessageType.Voice:
                     await userLogic.ReceiveVoiceMessageAsync(message, client);
                     break;
                 default:
