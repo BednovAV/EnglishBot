@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslatorLibrary", "Transl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D36B058F-29EB-4E8C-9E3F-8DBD313BA5A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseologicalLibrary", "PhraseologicalLibrary\PhraseologicalLibrary.csproj", "{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D36B058F-29EB-4E8C-9E3F-8DBD313BA5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D36B058F-29EB-4E8C-9E3F-8DBD313BA5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D36B058F-29EB-4E8C-9E3F-8DBD313BA5A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

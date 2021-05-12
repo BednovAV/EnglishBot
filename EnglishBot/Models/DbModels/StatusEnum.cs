@@ -13,6 +13,7 @@ namespace EnglishBot.Models.DbModels
         WaitingTranslteRuToEn,
         TranslateEnToRu,
         WaitingTranslteEnToRu,
+        GetPhraseologiсal,
         other
     }
 }

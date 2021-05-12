@@ -32,6 +32,7 @@ namespace EnglishBot.Models
             commandsList.Add(new RenameCommand());
             commandsList.Add(new TranslateRuToEnCommand());
             commandsList.Add(new TranslateEnToRuCommand());
+            commandsList.Add(new PhraseologCommand());
 
             // client initialization
             _client = new TelegramBotClient(AppSettings.Key);

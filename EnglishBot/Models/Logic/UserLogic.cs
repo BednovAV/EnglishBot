@@ -1,9 +1,7 @@
 ﻿using EnglishBot.Models.DbModels;
-using System;
-using System.Collections.Generic;
+using PhraseologicalLibrary;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using TranslatorLibrary;
@@ -12,6 +10,12 @@ namespace EnglishBot.Models.Logic
 {
     public class UserLogic : IUserLogic
     {
+        private Phraseological _phraseologService;
+
+        public UserLogic()
+        {
+            _phraseologService = new Phraseological();
+        }
 
         public async Task ReceiveTextMessageAsync(Message message, TelegramBotClient client)
         {
@@ -54,6 +58,10 @@ namespace EnglishBot.Models.Logic
                         await TranslateAsync(message, client, user);
                         break;
 
+                    case Status.GetPhraseologiсal:
+                        await PhraseologicalAsync(message, client, user);
+                        break;
+
                     case Status.other:
                         await OtherAsync(message, client, user);
                         break;
@@ -66,6 +74,15 @@ namespace EnglishBot.Models.Logic
         public Task ReceiveVoiceMessageAsync(Message message, TelegramBotClient client)
         {
             return Task.CompletedTask;
+        }
+
+        private async Task PhraseologicalAsync(Message message, TelegramBotClient client, BotUser user)
+        {
+            await client.SendTextMessageAsync(
+                                       chatId: user.Chat,
+                                       text: _phraseologService.Get());
+
+            user.DialogStatus = Status.other;
         }
 
         private async Task TranslateAsync(Message message, TelegramBotClient client, BotUser user)
@@ -108,13 +125,11 @@ namespace EnglishBot.Models.Logic
             }
         }
 
-        private async Task OtherAsync(Message message, TelegramBotClient client, BotUser user)
-        {
-            await client.SendTextMessageAsync(
-                            chatId : user.Chat,
-                            text : $"Привет, {user.Name}",
-                            replyToMessageId : message.MessageId);
-        }
+        private async Task OtherAsync(Message message, TelegramBotClient client, BotUser user) 
+            => await client.SendTextMessageAsync(
+                            chatId: user.Chat,
+                            text: $"Привет, {user.Name}",
+                            replyToMessageId: message.MessageId);
 
         private async Task NewUserAsync(Message message, TelegramBotClient client, BotUser user)
         {
