@@ -23,7 +23,6 @@ namespace EnglishBot.Controllers
                 }
             }
 
-            result += VoiceTest.LastVoiceMessage;
             return result;
         }
 
