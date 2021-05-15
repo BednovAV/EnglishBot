@@ -8,9 +8,8 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            var words = new Words();
-
-            Console.Write(words.Get());
+            GoogleTranslator tr = new GoogleTranslator();
+            Console.WriteLine(tr.TranslateEnToRu("hello"));
 
         }
     }

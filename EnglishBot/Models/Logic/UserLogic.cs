@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using TranslateService;
 
 namespace EnglishBot.Models.Logic
 {
@@ -88,8 +87,9 @@ namespace EnglishBot.Models.Logic
             }
             else
             {
-                var waitingWord = Bot.TranslateService.Translate(user.WaitingWord, Language.en, Language.ru);
-                string responce = message.Text == waitingWord?
+                var waitingWord = Bot.TranslateService.TranslateEnToRu(user.WaitingWord);
+
+                string responce = message.Text.Trim().ToLower() == waitingWord.Trim().ToLower()?
                                   "Все верно!"
                                   : $"Правильный ответ - {waitingWord} :(";
 
@@ -97,6 +97,8 @@ namespace EnglishBot.Models.Logic
                                        chatId: user.Chat,
                                        text: responce,
                                        replyToMessageId: message.MessageId);
+
+                user.DialogStatus = Status.other;
             }
         }
 
@@ -129,21 +131,9 @@ namespace EnglishBot.Models.Logic
             }
             else
             {
-                Language from;
-                Language to;
-
-                if (user.DialogStatus == Status.WaitingTranslteEnToRu)
-                {
-                    from = Language.en;
-                    to = Language.ru;
-                }
-                else
-                {
-                    from = Language.ru;
-                    to = Language.en;
-                }
-
-                var translatedText = Bot.TranslateService.Translate(message.Text, from, to);
+                var translatedText = user.DialogStatus == Status.WaitingTranslteEnToRu?
+                                     Bot.TranslateService.TranslateEnToRu(message.Text)
+                                     : Bot.TranslateService.TranslateRuToEn(message.Text);
 
                 await client.SendTextMessageAsync(
                                 chatId: user.Chat,

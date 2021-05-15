@@ -6,6 +6,14 @@ namespace TranslateService
 {
     public class GoogleTranslator
     {
+        WebClient webClient;
+        public GoogleTranslator()
+        {
+            webClient = new WebClient
+            {
+                Encoding = System.Text.Encoding.UTF8
+            };
+        }
 
         public string Translate(string word, Language languageFrom, Language languageTo)
         {
@@ -13,10 +21,7 @@ namespace TranslateService
             var toLanguage = languageTo.ToString();
 
             var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={HttpUtility.UrlEncode(word)}";
-            var webClient = new WebClient
-            {
-                Encoding = System.Text.Encoding.UTF8
-            };
+
             var result = webClient.DownloadString(url);
             try
             {
@@ -28,5 +33,11 @@ namespace TranslateService
                 return "Error";
             }
         }
+
+        public string TranslateEnToRu(string word)
+            => Translate(word, Language.en, Language.ru);
+
+        public string TranslateRuToEn(string word)
+            => Translate(word, Language.ru, Language.en);
     }
 }
