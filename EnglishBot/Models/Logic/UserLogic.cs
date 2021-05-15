@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using TranslatorLibrary;
+using TranslateService;
 
 namespace EnglishBot.Models.Logic
 {
@@ -54,12 +54,49 @@ namespace EnglishBot.Models.Logic
                         await PhraseologicalAsync(message, client, user);
                         break;
 
+                    case Status.GetWord:
+                    case Status.WaitingGetWord:
+                        await CheckWordAsync(message, client, user);
+                        break;
+
                     case Status.other:
                         await OtherAsync(message, client, user);
                         break;
                 }
 
                 await db.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckWordAsync(Message message, TelegramBotClient client, BotUser user)
+        {
+            if (user.DialogStatus == Status.GetWord)
+            {
+                var word = Bot.WordsService.Get();
+                user.WaitingWord = word;
+
+                await client.SendTextMessageAsync(
+                                       chatId: user.Chat,
+                                       text: "Я скажу тебе слово, а ты мне его перевод.",
+                                       replyToMessageId: message.MessageId);
+
+                await client.SendTextMessageAsync(
+                                       chatId: user.Chat,
+                                       text: word);
+
+                user.DialogStatus = Status.WaitingGetWord;
+            }
+            else
+            {
+                var waitingWord = Bot.TranslateService.Translate(user.WaitingWord, Language.en, Language.ru);
+                string responce = message.Text == waitingWord?
+                                  "Все верно!"
+                                  : $"Правильный ответ - {waitingWord} :(";
+
+                await client.SendTextMessageAsync(
+                                       chatId: user.Chat,
+                                       text: responce,
+                                       replyToMessageId: message.MessageId);
             }
         }
 

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseologicalService", "Ph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslateService", "TranslateService\TranslateService.csproj", "{8B6F6E53-4740-4820-B360-048BBF49D7DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsService", "WordsService\WordsService.csproj", "{C38C0B8D-C267-4971-BC91-B34CD7DE9AB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8B6F6E53-4740-4820-B360-048BBF49D7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B6F6E53-4740-4820-B360-048BBF49D7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B6F6E53-4740-4820-B360-048BBF49D7DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38C0B8D-C267-4971-BC91-B34CD7DE9AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38C0B8D-C267-4971-BC91-B34CD7DE9AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38C0B8D-C267-4971-BC91-B34CD7DE9AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38C0B8D-C267-4971-BC91-B34CD7DE9AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

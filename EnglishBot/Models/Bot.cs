@@ -4,7 +4,8 @@ using PhraseologicalService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using TranslatorLibrary;
+using TranslateService;
+using WordsService;
 
 namespace EnglishBot.Models
 {
@@ -19,6 +20,8 @@ namespace EnglishBot.Models
         public static Phraseological PhraseologService { get; private set; }
 
         public static GoogleTranslator TranslateService { get; private set; }
+
+        public static Words WordsService { get; private set; }
 
         private static TelegramBotClient _client;
 
@@ -35,6 +38,9 @@ namespace EnglishBot.Models
             // Translate service initialization
             TranslateService = new GoogleTranslator();
 
+            // Words service initialization
+            WordsService = new Words();
+
             // user logic initialization
             UserLogic = new UserLogic();
 
@@ -44,6 +50,7 @@ namespace EnglishBot.Models
             commandsList.Add(new TranslateRuToEnCommand());
             commandsList.Add(new TranslateEnToRuCommand());
             commandsList.Add(new PhraseologCommand());
+            commandsList.Add(new GetWordCommand());
 
             // client initialization
             _client = new TelegramBotClient(AppSettings.Key);

@@ -13,6 +13,8 @@ namespace EnglishBot.Models.DbModels
 
         public string Name { get; set; }
 
+        public string WaitingWord { get; set; }
+
         public Status DialogStatus { get; set; }
     }
 }

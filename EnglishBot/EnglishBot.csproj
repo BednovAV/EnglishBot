@@ -260,6 +260,7 @@
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\Bot.cs" />
     <Compile Include="Models\Commands\Command.cs" />
+    <Compile Include="Models\Commands\GetWordCommand.cs" />
     <Compile Include="Models\Commands\PhraseologCommand.cs" />
     <Compile Include="Models\Commands\RenameCommand.cs" />
     <Compile Include="Models\Commands\TranslateEnToRuCommand.cs" />
@@ -294,6 +295,14 @@
     <ProjectReference Include="..\PhraseologicalService\PhraseologicalService.csproj">
       <Project>{D52FAE61-BDA1-420B-B299-509034AE11B9}</Project>
       <Name>PhraseologicalService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TranslateService\TranslateService.csproj">
+      <Project>{8B6F6E53-4740-4820-B360-048BBF49D7DF}</Project>
+      <Name>TranslateService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WordsService\WordsService.csproj">
+      <Project>{C38C0B8D-C267-4971-BC91-B34CD7DE9AB7}</Project>
+      <Name>WordsService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using TranslateService;
+using WordsService;
 
 namespace Tests
 {
@@ -7,8 +8,9 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            var translate = new GoogleTranslator();
-            Console.WriteLine(translate.Translate("hello", Language.en, Language.ru));
+            var words = new Words();
+
+            Console.Write(words.Get());
 
         }
     }

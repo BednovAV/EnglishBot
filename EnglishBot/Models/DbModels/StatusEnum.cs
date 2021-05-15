@@ -14,6 +14,8 @@ namespace EnglishBot.Models.DbModels
         TranslateEnToRu,
         WaitingTranslteEnToRu,
         GetPhraseologiсal,
+        GetWord,
+        WaitingGetWord,
         other
     }
 }
