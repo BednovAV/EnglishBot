@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PhraseologicalLibrary
+namespace PhraseologicalService
 {
     public class Phraseological
     {
@@ -25,6 +23,6 @@ namespace PhraseologicalLibrary
         }
 
         public string Get() => Phraseologiсals[new Random().Next(0, Phraseologiсals.Count)];
-        
+
     }
 }

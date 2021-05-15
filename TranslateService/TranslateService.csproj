@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2ACC09D3-86BF-43AE-BC6B-0385B464C8F9}</ProjectGuid>
+    <ProjectGuid>{8B6F6E53-4740-4820-B360-048BBF49D7DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TranslatorLibrary</RootNamespace>
-    <AssemblyName>TranslatorLibrary</AssemblyName>
+    <RootNamespace>TranslateService</RootNamespace>
+    <AssemblyName>TranslateService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

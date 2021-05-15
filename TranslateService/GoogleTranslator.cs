@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
-namespace TranslatorLibrary
+namespace TranslateService
 {
     public class GoogleTranslator
     {
-        public static string Translate(string word, Language languageFrom, Language languageTo)
+
+        public string Translate(string word, Language languageFrom, Language languageTo)
         {
             var fromLanguage = languageFrom.ToString();
             var toLanguage = languageTo.ToString();
-            
+
             var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={HttpUtility.UrlEncode(word)}";
             var webClient = new WebClient
             {

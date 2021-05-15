@@ -1,5 +1,4 @@
 ﻿using EnglishBot.Models.DbModels;
-using PhraseologicalLibrary;
 using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -10,13 +9,6 @@ namespace EnglishBot.Models.Logic
 {
     public class UserLogic : IUserLogic
     {
-        private Phraseological _phraseologService;
-
-        public UserLogic()
-        {
-            _phraseologService = new Phraseological();
-        }
-
         public async Task ReceiveTextMessageAsync(Message message, TelegramBotClient client)
         {
             
@@ -80,7 +72,7 @@ namespace EnglishBot.Models.Logic
         {
             await client.SendTextMessageAsync(
                                        chatId: user.Chat,
-                                       text: _phraseologService.Get());
+                                       text: Bot.PhraseologService.Get());
 
             user.DialogStatus = Status.other;
         }
@@ -114,7 +106,7 @@ namespace EnglishBot.Models.Logic
                     to = Language.en;
                 }
 
-                var translatedText = GoogleTranslator.Translate(message.Text, from, to);
+                var translatedText = Bot.TranslateService.Translate(message.Text, from, to);
 
                 await client.SendTextMessageAsync(
                                 chatId: user.Chat,

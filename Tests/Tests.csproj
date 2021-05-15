@@ -55,9 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhraseologicalLibrary\PhraseologicalLibrary.csproj">
-      <Project>{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}</Project>
-      <Name>PhraseologicalLibrary</Name>
+    <ProjectReference Include="..\TranslateService\TranslateService.csproj">
+      <Project>{8B6F6E53-4740-4820-B360-048BBF49D7DF}</Project>
+      <Name>TranslateService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

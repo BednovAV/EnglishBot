@@ -1,12 +1,5 @@
-﻿using PhraseologicalLibrary;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using TranslateService;
 
 namespace Tests
 {
@@ -14,12 +7,8 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            Phraseological ph = new Phraseological();
-            Console.WriteLine(ph.Get());
-            Console.WriteLine(ph.Get());
-            Console.WriteLine(ph.Get());
-            Console.WriteLine(ph.Get());
-            Console.WriteLine(ph.Get());
+            var translate = new GoogleTranslator();
+            Console.WriteLine(translate.Translate("hello", Language.en, Language.ru));
 
         }
     }

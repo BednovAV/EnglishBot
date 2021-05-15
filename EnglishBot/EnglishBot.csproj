@@ -291,13 +291,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhraseologicalLibrary\PhraseologicalLibrary.csproj">
-      <Project>{FF477C26-F683-4D16-9DEF-6BF8E8C570BD}</Project>
-      <Name>PhraseologicalLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TranslatorLibrary\TranslatorLibrary.csproj">
-      <Project>{2ACC09D3-86BF-43AE-BC6B-0385B464C8F9}</Project>
-      <Name>TranslatorLibrary</Name>
+    <ProjectReference Include="..\PhraseologicalService\PhraseologicalService.csproj">
+      <Project>{D52FAE61-BDA1-420B-B299-509034AE11B9}</Project>
+      <Name>PhraseologicalService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
